@@ -2,12 +2,31 @@
     background-color: blue;
     text-align: center;
     border-radius: 10px;
-    margin: 20px;
+    margin: 0;
+    
     color: white;
-    height: 150px;
+   
+}
+div#searchResults {
+    background-color: rgb(255, 255, 255);
+    padding: 20px 40px;
+    
 }
 .display-4 {
     font-size: 64px;
     font-weight: bold;
 
+}
+body {
+    background-color: #a5a5a5;
+    font-family: 'Roboto', sans-serif;
+}
+span#title {
+    margin-right: 40px;
+}
+span#buttons {
+    margin-right: 10px;
+}
+button {
+    text-align: center;
 }

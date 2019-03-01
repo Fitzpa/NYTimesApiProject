@@ -1,88 +1,129 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">"
-    <link type="text/css"
-    rel="stylesheet"
-    href="assets/css/project.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link type="text/css" rel="stylesheet" href="assets/css/project.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,900" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+  </head>
 
-<body>
-    <div class="jumbotron">
-        <div class="headBox">
-            <h1 class="display-4">New York Times Search</h1>
-        </div>
-        <h2 class="lead">Search Parameters</h2>
-        <p>Search Terms:</p>
-     
-            <input class="form-control mr-sm-2" id="name" type="search" aria-label="Search">
-       
-        <br>
-        <p>Number of Records:</p>
-      
-            <input class="form-control mr-sm-2" id="numResults" type="search" aria-label="Search">
-   
-        <br>
-        <p>Start Year (Optional):</p>
-       
-            <input class="form-control mr-sm-2" id="yearBegin" type="search" aria-label="Search">
-        
-        <br>
-        <p>End Year (Optional):</p>
-        
-            <input class="form-control mr-sm-2" id="yearEnd" type="search" aria-label="Search">
-        
-        <br>
-        <hr class="my-4">
-        <p class="lead">
-            <p>
-                <button type="button" class="btn btn-light" id="search">Search</button>
-                <button type="button" class="btn btn-light" id="clear">Clear Results</button>
-            </p>
+  <body>
+    <div class="jumbotron jumbotron-fluid bg-dark">
+      <div class="headBox bg-dark">
+        <h1 class="display-4">
+          <span id="title"><i class="far fa-newspaper"></i></span>New York Times Search
+        </h1>
+      </div>
     </div>
-    <div id="searchResults"></div>
+    <div class="container">
+      <h2>Search Parameters</h2>
+      <p>Search Terms:</p>
 
+      <input
+        class="form-control mr-sm-2"
+        id="name"
+        type="text"
+        value="Michelle Obama"
+        aria-label="Search"
+      />
+
+      <br />
+      <p>Number of Records:</p>
+
+      <input
+        class="form-control mr-sm-2"
+        id="numResults"
+        type="text"
+        value="10"
+        aria-label="Search"
+      />
+
+      <br />
+      <p>Start Year (Optional):</p>
+
+      <input
+        class="form-control mr-sm-2"
+        id="yearBegin"
+        type="text"
+        value="2010"
+        aria-label="Search"
+      />
+
+      <br />
+      <p>End Year (Optional):</p>
+
+      <input
+        class="form-control mr-sm-2"
+        id="yearEnd"
+        type="text"
+        value="2019"
+        aria-label="Search"
+      />
+
+      <br />
+      <hr class="my-4" />
+      <p class="lead"></p>
+      <p>
+        <button type="button" class="btn btn-light" id="search">
+          <span id="buttons"><i class="fas fa-search"></i></span>Search
+        </button>
+        <button type="button" class="btn btn-light" id="clear">
+          <span id="buttons"><i class="fas fa-trash"></i></span>Clear
+          Results
+        </button>
+      </p>
+
+      <div id="searchResults"></div>
+    </div>
 
     <script type="text/javascript">
-        $("#search").on("click", function () {
-            var name = $("#name").val();
-            var numberResults = $("#numResults").val();
-            var yearBegin = $("#yearBegin").val();
-            var yearEnd = $("#yearEnd").val();
+      $("#search").on("click", function() {
+       
+        var name = $("#name").val();
+        var numberResults = $("#numResults").val();
+        var yearBegin = $("#yearBegin").val();
+        var yearEnd = $("#yearEnd").val();
 
-            var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q="+ name + "&page=0&facet_fields=source&facet=true&begin_date=" + yearBegin + "0101&end_date=" + yearEnd + "1231&api-key=81ZQimF9BnhgfYnZejSmc5TCmGIxZL9H";
+        var queryURL =
+          "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
+          name +
+          "&page=0&facet_fields=source&facet=true&begin_date=" +
+          yearBegin +
+          "0101&end_date=" +
+          yearEnd +
+          "1231&api-key=81ZQimF9BnhgfYnZejSmc5TCmGIxZL9H";
 
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-
-            }).then(function (response) {
-                var results = response.response.docs;
-                for (var i = 0; i < results.length; i++) {
-
-                    var personDiv = $("<div>");
-                    personDiv.append(results[i].web_url);
-                    personDiv.append(results[i].headline.main);
-                    $("#searchResults").prepend(personDiv);
-                }
-            })
-
-
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
+          var results = response.response.docs;
+          var newOl = $("<ol>");
+          for (var i = 0; i < results.length; i++) {
+            var personDiv = $("<div>");
+            var newLi = $("<li>");
+            newLi.append("<a href=" + results[i].web_url + ">" + results[i].headline.main + "</a>");
+            newOl.append(newLi);
+            personDiv.append(newOl);
+            $("#searchResults").prepend(personDiv);
+          }
         });
-
-
-
-
-
+      });
     </script>
-</body>
-
+  </body>
 </html>
