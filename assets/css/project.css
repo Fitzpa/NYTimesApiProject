@@ -1,0 +1,13 @@
+.headBox {
+    background-color: blue;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+    color: white;
+    height: 150px;
+}
+.display-4 {
+    font-size: 64px;
+    font-weight: bold;
+
+}
